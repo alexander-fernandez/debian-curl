@@ -20,7 +20,7 @@ jobs:
       uses: GlueOps/github-actions-build-push-containers@v0.3.2
       with:
         # The container registry to push the image to
-        registry: registry.hub.docker.com # default is ghcr.io
+        registry: index.docker.io # default is ghcr.io
         # The username for authentication to the container registry (defaults to the github.actor)
         registry-username: alexanderfernandez # default is ${{ github.actor }}
         # Docker image is named after repository
