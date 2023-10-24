@@ -1,4 +1,4 @@
-name: Build & Push to DockerHub CI
+name: Docker Image CI
 
 on:
   push:
@@ -21,6 +21,6 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASS
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag debbookwormcurl:$(date +%s)   
+      run: docker build . --file Dockerfile --tag deb-bookworm-curl:$(date +%s)   
     - name: Push to Docker Hub
-      run: docker push ${{secrets.DOCKERHUB_USERNAME}}/debiancurl
+      run: docker push ${{secrets.DOCKERHUB_USERNAME}}/deb-bookworm-curl
