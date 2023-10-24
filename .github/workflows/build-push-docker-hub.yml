@@ -1,0 +1,26 @@
+name: Build & Push to DockerHub CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker Login
+      env:
+        DOCKER_USER: ${{secrets.DOCKERHUB_USERNAME}}
+        DOCKER_PASS: ${{secrets.DOCKERHUB_TOKEN}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASS
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag debbookwormcurl:$(date +%s)   
+    - name: Push to Docker Hub
+      run: docker push ${{secrets.DOCKERHUB_USERNAME}}/debiancurl
