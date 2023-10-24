@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag debiancurl:bookworm)
+      run: docker build . --file Dockerfile --tag debiancurl:bookworm
     - name: Auto Docker Push
       # You may pin to the exact commit or the version.
       # uses: bozdoz/auto-docker-push@4b66f8aac49b399c209193b9ab9091e6aa80ee51
