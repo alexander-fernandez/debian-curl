@@ -16,3 +16,14 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build Dockerfile and Push to The Hub
+      # You may pin to the exact commit or the version.
+      # uses: beehivewarrior/docker-hub-builder@296a60202ffe4099d493f06f2105a4e481710c0d
+      uses: beehivewarrior/docker-hub-builder@v1.0
+      with:
+        # The username to authenticate with dockerhub
+        DOCKERHUB_USERNAME: alexanderfernandez
+        # The token to authenticate with dockerhub
+        DOCKERHUB_TOKEN: dckr_pat_6MlORjlJMYZhn792NPd9BujYBiw
+        # Name of image to publish to dockerhub, e.g. 'user/my-image'
+        IMAGE_NAME: alexanderfernandez/deb-bookworm-curl
