@@ -14,18 +14,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build Docker Image and Push to GHCR, Docker Hub, or AWS ECR
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag debiancurl:bookworm)
+    - name: Auto Docker Push
       # You may pin to the exact commit or the version.
-      # uses: GlueOps/github-actions-build-push-containers@31cfe683ad7e7892bb4acf4c2bb4065d533976ba
-      uses: GlueOps/github-actions-build-push-containers@v0.3.2
+      # uses: bozdoz/auto-docker-push@4b66f8aac49b399c209193b9ab9091e6aa80ee51
+      uses: bozdoz/auto-docker-push@v2.0.0-published-action
       with:
-        # The container registry to push the image to
-        registry: index.docker.io # default is ghcr.io
-        # The username for authentication to the container registry (defaults to the github.actor)
-        registry-username: alexanderfernandez # default is ${{ github.actor }}
-        # Docker image is named after repository
-        image_name: alexanderfernandez/debian-curl # default is ${{ github.repository }}
-        # Docker Hub Username
-        dockerhub_username: alexanderfernandez # optional
-        # Docker Hub Personal Access Token
-        dockerhub_password: dckr_pat_6MlORjlJMYZhn792NPd9BujYBiw # optional
+        # Name of image
+        image: debiancurl:bookworm
+        # Docker Hub username'
+        username: alexanderfernandez
+        # Docker Hub password'
+        password: dckr_pat_6MlORjlJMYZhn792NPd9BujYBiw
