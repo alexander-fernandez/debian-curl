@@ -25,5 +25,7 @@ jobs:
         DOCKERHUB_USERNAME: alexanderfernandez
         # The token to authenticate with dockerhub
         DOCKERHUB_TOKEN: dckr_pat_6MlORjlJMYZhn792NPd9BujYBiw
+        # The tag of the base image
+        BASE_TAG: bookworm
         # Name of image to publish to dockerhub, e.g. 'user/my-image'
-        IMAGE_NAME: alexanderfernandez/deb-bookworm-curl
+        IMAGE_NAME: alexanderfernandez/debian-curl
