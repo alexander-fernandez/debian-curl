@@ -14,16 +14,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build Dockerfile and Push to The Hub
+    - name: Build Docker Image and Push to GHCR, Docker Hub, or AWS ECR
       # You may pin to the exact commit or the version.
-      # uses: beehivewarrior/docker-hub-builder@296a60202ffe4099d493f06f2105a4e481710c0d
-      uses: beehivewarrior/docker-hub-builder@v1.0
+      # uses: GlueOps/github-actions-build-push-containers@31cfe683ad7e7892bb4acf4c2bb4065d533976ba
+      uses: GlueOps/github-actions-build-push-containers@v0.3.2
       with:
-        # The username to authenticate with dockerhub
-        DOCKERHUB_USERNAME: alexanderfernandez
-        # The token to authenticate with dockerhub
-        DOCKERHUB_TOKEN: dckr_pat_6MlORjlJMYZhn792NPd9BujYBiw
-        # The tag of the base image
-        BASE_TAG: bookworm
-        # Name of image to publish to dockerhub, e.g. 'user/my-image'
-        IMAGE_NAME: alexanderfernandez/debian-curl
+        # The container registry to push the image to
+        registry: registry.hub.docker.com # default is ghcr.io
+        # The username for authentication to the container registry (defaults to the github.actor)
+        registry-username: alexanderfernandez # default is ${{ github.actor }}
+        # Docker image is named after repository
+        image_name: alexanderfernandez/debian-curl # default is ${{ github.repository }}
+        # Docker Hub Username
+        dockerhub_username: alexanderfernandez # optional
+        # Docker Hub Personal Access Token
+        dockerhub_password: dckr_pat_6MlORjlJMYZhn792NPd9BujYBiw # optional
