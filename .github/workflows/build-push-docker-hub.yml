@@ -23,4 +23,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag deb-bookworm-curl:$(date +%s)   
     - name: Push to Docker Hub
-      run: docker push ${{secrets.DOCKERHUB_USERNAME}}/deb-bookworm-curl
+      run: docker push deb-bookworm-curl
